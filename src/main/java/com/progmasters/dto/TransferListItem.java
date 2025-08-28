@@ -19,6 +19,6 @@ public class TransferListItem {
         this.source = transfer.getSource().getUsername();
         this.target = transfer.getTarget().getUsername();
         this.amount = transfer.getAmount();
-        this.timeStamp = transfer.getTimeStamp().toString();
+        this.timeStamp = String.valueOf(transfer.getTimeStamp());
     }
 }

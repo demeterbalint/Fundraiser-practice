@@ -39,10 +39,9 @@ public class AccountService {
         return new AccountDetails(account);
     }
 
-//    public List<AccountDetails> getAllAccountDetailsExceptOwn() {
-//        accountRepository.findAll().rem;
-//        return null;
-//    }
+    public List<AccountDetails> getAllAccountDetails() {
+        return accountRepository.findAll().stream().map(AccountDetails::new).toList();
+    }
 
     private Account findByIpAddress(String ipAddress) {
         return accountRepository.findByIpAddress(ipAddress);

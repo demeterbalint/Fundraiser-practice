@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/accounts")
@@ -36,5 +37,11 @@ public class AccountController {
         log.info("Getting account details");
         String ipAddress = request.getRemoteAddr();
         return ResponseEntity.ok(accountService.getMyAccountDetails(ipAddress));
+    }
+
+    @GetMapping("/allAccounts")
+    public ResponseEntity<List<AccountDetails>> getAllAccounts(HttpServletRequest request) {
+        log.info("Getting all account details");
+        return ResponseEntity.ok(accountService.getAllAccountDetails());
     }
 }
