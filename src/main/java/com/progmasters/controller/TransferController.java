@@ -1,5 +1,6 @@
 package com.progmasters.controller;
 
+import com.progmasters.dto.TransferInitData;
 import com.progmasters.dto.TransferListItem;
 import com.progmasters.service.TransferService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,8 +27,15 @@ public class TransferController {
     }
 
     @GetMapping("/allTransfers")
-    public ResponseEntity<List<TransferListItem>> getAllTransfers(HttpServletRequest request) {
+    public ResponseEntity<List<TransferListItem>> getAllTransfers() {
         log.info("Getting all transfers");
         return ResponseEntity.ok(transferService.getAllTransfers());
+    }
+
+    @GetMapping
+    public ResponseEntity<TransferInitData> getNewTransferData(HttpServletRequest request) {
+        log.info("Getting new transfer data");
+        String ipaddress = request.getRemoteAddr();
+        return ResponseEntity.ok(transferService.getTransferInitData(ipaddress));
     }
 }
