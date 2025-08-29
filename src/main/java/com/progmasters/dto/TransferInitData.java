@@ -2,7 +2,6 @@ package com.progmasters.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Data

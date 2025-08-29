@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import java.util.List;
 public class AccountController {
 
     private AccountService accountService;
-    //private AccountRegistrationCommandValidator arcv;
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;

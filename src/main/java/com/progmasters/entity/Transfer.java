@@ -1,13 +1,11 @@
 package com.progmasters.entity;
 
-import com.progmasters.dto.TransferCreationCommand;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.LocalDateTime;
 
 @Entity
