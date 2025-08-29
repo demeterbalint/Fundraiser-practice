@@ -57,4 +57,12 @@ public class AccountService {
     private List<Account> findAll() {
         return accountRepository.findAll();
     }
+
+    public Account findAccountByGoal(String target) {
+        return accountRepository.findByGoal(target);
+    }
+
+    public Account findAccountByIp(String ipaddress) {
+        return accountRepository.findByIpAddress(ipaddress);
+    }
 }

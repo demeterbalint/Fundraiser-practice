@@ -1,14 +1,14 @@
 package com.progmasters.service;
 
-import com.progmasters.dto.AccountDetails;
-import com.progmasters.dto.TargetAccountOption;
-import com.progmasters.dto.TransferInitData;
-import com.progmasters.dto.TransferListItem;
+import com.progmasters.dto.*;
+import com.progmasters.entity.Account;
+import com.progmasters.entity.Transfer;
 import com.progmasters.repository.TransferRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +39,23 @@ public class TransferService {
         transferInitData.setSourceAccountName(source.getUsername());
         transferInitData.setBalance(source.getBalance());
         return transferInitData;
+    }
+
+    public void saveTransfer(TransferCreationCommand transferCreationCommand, String ipaddress) {
+        Account source = accountService.findAccountByIp(ipaddress);
+        if (transferCreationCommand.getAmount() > source.getBalance()) {
+            throw new IllegalArgumentException("The transfer amount exceeds the balance");
+        }
+
+        Account target = accountService.findAccountByGoal(transferCreationCommand.getTarget());
+
+        Transfer transfer = new Transfer();
+        transfer.setSource(source);
+        transfer.setTarget(target);
+        transfer.setAmount(transferCreationCommand.getAmount());
+
+        source.setBalance(source.getBalance() - transferCreationCommand.getAmount());
+        target.setFunds(target.getFunds() + transferCreationCommand.getAmount());
+        transferRepository.save(transfer);
     }
 }

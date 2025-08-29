@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository<Account,Long> {
 
     Account findByIpAddress(String ipAddress);
+
+    Account findByGoal(String target);
 }

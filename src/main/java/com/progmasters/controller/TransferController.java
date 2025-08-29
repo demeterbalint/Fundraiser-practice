@@ -1,16 +1,18 @@
 package com.progmasters.controller;
 
+import com.progmasters.dto.TransferCreationCommand;
 import com.progmasters.dto.TransferInitData;
 import com.progmasters.dto.TransferListItem;
 import com.progmasters.service.TransferService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -37,5 +39,14 @@ public class TransferController {
         log.info("Getting new transfer data");
         String ipaddress = request.getRemoteAddr();
         return ResponseEntity.ok(transferService.getTransferInitData(ipaddress));
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> saveTransfer(HttpServletRequest request, @RequestBody TransferCreationCommand  transferCreationCommand) {
+        log.info("Saving transfer data");
+        String ip =  request.getRemoteAddr();
+        transferService.saveTransfer(transferCreationCommand, ip);
+        log.info("New transfer has been saved");
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
