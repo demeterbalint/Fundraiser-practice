@@ -25,7 +25,7 @@ public class TransferController {
         this.transferService = transferService;
     }
 
-    @GetMapping
+    @GetMapping("/allTransfers")
     public ResponseEntity<List<TransferListItem>> getAllTransfers(HttpServletRequest request) {
         log.info("Getting all transfers");
         return ResponseEntity.ok(transferService.getAllTransfers());
