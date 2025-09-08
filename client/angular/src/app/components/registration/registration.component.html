@@ -1,15 +1,18 @@
-<form [formGroup]="form" (ngSubmit)="registerAccount()">
-  <div>
-    <h1>Register</h1>
-    <hr>
-  </div>
-  <div>
+<form class="form-custom" [formGroup]="form" (ngSubmit)="registerAccount()">
+
+  <h1>Register</h1>
+  <hr>
+
+  <div class="form-field">
     <label for="username-input">Username:</label>
     <input type="text" id="username-input" formControlName="username">
+  </div>
 
+  <div class="form-field">
     <label for="goal-input">Goal:</label>
     <input type="text" id="goal-input" formControlName="goal">
-
-    <input type="submit" value="Register">
   </div>
+
+  <button type="submit">Register</button>
+
 </form>

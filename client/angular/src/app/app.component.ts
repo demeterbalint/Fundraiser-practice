@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +6,24 @@ import { Component } from '@angular/core';
   standalone: false,
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'angular';
+
+  @HostListener('window:resize')
+  onResize() {
+    this.setNavbarPadding();
+  }
+
+  ngAfterViewInit(){
+    this.setNavbarPadding();
+  }
+
+  private setNavbarPadding() {
+    const navbar = document.querySelector('.navbar');
+    const content = document.querySelector('.main-content');
+    if (navbar && content) {
+      const height = navbar.clientHeight;
+      content.setAttribute('style', `padding-top: ${height}px;`);
+    }
+  }
 }

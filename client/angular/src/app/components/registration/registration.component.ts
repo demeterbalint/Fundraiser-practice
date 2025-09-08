@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RegistrationService} from '../../services/registration.service';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
+  imports: [
+    ReactiveFormsModule
+  ],
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
@@ -23,7 +26,7 @@ export class RegistrationComponent {
     this.regService.registerAccount(this.form.value).subscribe(
       () => {
         console.log("Successfully registered");
-        this.router.navigate(['/accounts/myAccountDetails']);
+        this.router.navigate(['/myAccount']);
       },
       error => {
         console.log(error);
