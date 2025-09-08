@@ -5,6 +5,7 @@ import com.progmasters.dto.TransferInitData;
 import com.progmasters.dto.TransferListItem;
 import com.progmasters.service.TransferService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class TransferController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveTransfer(HttpServletRequest request, @RequestBody TransferCreationCommand  transferCreationCommand) {
+    public ResponseEntity<Void> saveTransfer(HttpServletRequest request, @RequestBody @Valid TransferCreationCommand  transferCreationCommand) {
         log.info("Saving transfer data");
         String ip =  request.getRemoteAddr();
         transferService.saveTransfer(transferCreationCommand, ip);

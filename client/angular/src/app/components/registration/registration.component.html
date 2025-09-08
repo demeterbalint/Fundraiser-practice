@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="registerAccount()">
+  <div>
+    <h1>Register</h1>
+    <hr>
+  </div>
+  <div>
+    <label for="username-input">Username:</label>
+    <input type="text" id="username-input" formControlName="username">
+
+    <label for="goal-input">Goal:</label>
+    <input type="text" id="goal-input" formControlName="goal">
+
+    <input type="submit" value="Register">
+  </div>
+</form>

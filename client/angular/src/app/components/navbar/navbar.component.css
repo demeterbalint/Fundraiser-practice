@@ -1,0 +1,29 @@
+/* Brand (Fundraiser) → gold */
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffe9b3 !important; /* gold */
+}
+
+.navbar-brand:hover {
+  text-decoration: underline;
+  color: #ffe9b3 !important;
+}
+
+/* Nav links → beige by default */
+.nav-link {
+  font-size: 1.1rem;
+  color: #ffffff !important; /* white by default */
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #ffffff !important; /* still white on hover */
+}
+
+.nav-link.active {
+  color: #ff9800 !important; /* orange for active */
+  text-decoration: none; /* or underline if you like */
+}
