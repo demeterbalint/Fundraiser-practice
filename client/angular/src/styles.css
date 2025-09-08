@@ -67,6 +67,21 @@
   text-align: center;
 }
 
+/* Disabled inputs */
+.form-custom input:disabled,
+.form-custom textarea:disabled {
+  background-color: #a1a1a1;  /* light gray to indicate read-only */
+  color: #2b6777;             /* darker gray text */
+  border-color: #c8d8e4;      /* softer border */
+  cursor: not-allowed;        /* shows disabled cursor */
+  opacity: 1;                 /* prevent default opacity dimming in some browsers */
+}
+
+/* Optional: add subtle visual cue on hover even if disabled */
+.form-custom input:disabled:hover {
+  border-color: #52ab98;      /* same as enabled border on hover */
+}
+
 /* Reusable table styling */
 .custom-table {
   width: 100%;

@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/accounts")
 @Slf4j
+@CrossOrigin
 public class AccountController {
 
     private AccountService accountService;

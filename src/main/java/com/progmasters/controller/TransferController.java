@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/transfers")
 @Slf4j
+@CrossOrigin
 public class TransferController {
 
     private TransferService transferService;

@@ -1,6 +1,26 @@
-<div class="card bg-dark text-white mb-3">
-  <div class="card-body">
-    <h2 class="card-title">My Account</h2>
-    <p class="card-text">my-account works!</p>
+<form class="form-custom" [formGroup]="accountForm">
+
+  <h1>Account</h1>
+  <hr>
+
+  <div class="form-field">
+    <label for="username-input">Username:</label>
+    <input type="text" id="username-input" formControlName="username">
   </div>
-</div>
+
+  <div class="form-field">
+    <label for="goal-input">Goal:</label>
+    <input type="text" id="goal-input" formControlName="goal">
+  </div>
+
+  <div class="form-field">
+    <label for="balance-input">Balance:</label>
+    <input type="number" id="balance-input" formControlName="balance">
+  </div>
+
+  <div class="form-field">
+    <label for="funds-input">Funds raised:</label>
+    <input type="number" id="funds-input" formControlName="funds">
+  </div>
+
+</form>
