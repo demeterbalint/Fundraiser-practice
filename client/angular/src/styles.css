@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 /* Form container */
 .form-custom {
   background-color: #2b6777;  /* deep teal */
@@ -63,10 +67,6 @@
   margin-bottom: 1rem;
 }
 
-.form-custom h1 {
-  text-align: center;
-}
-
 /* Disabled inputs */
 .form-custom input:disabled,
 .form-custom textarea:disabled {
@@ -94,6 +94,15 @@
   overflow: hidden; /* round corners */
 }
 
+.custom-table caption {
+  caption-side: top;        /* forces caption above the table */
+  text-align: left;          /* optional: align left, center, or right */
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;   /* space between caption and table */
+  color: #2b6777;           /* match your theme */
+}
+
 /* Table headers */
 .custom-table thead {
   background-color: #2b6777; /* deep teal header */
@@ -109,6 +118,7 @@
 /* Table body */
 .custom-table tbody tr {
   border-bottom: 1px solid #f2f2f2; /* light gray row divider */
+  height: 3rem /*fixed row height*/
 }
 
 .custom-table tbody tr:nth-child(even) {
@@ -118,12 +128,35 @@
 .custom-table tbody td {
   padding: 0.75rem 1rem;
   color: #2b6777; /* main text color */
+  border-top: 1px solid #c8d8e4;
+  vertical-align: middle;  /* center content vertically */
+  text-align: left;
+}
+
+/* Equal column width */
+.custom-table th,
+.custom-table td {
+  width: 25%; /* 4 equal columns */
+  text-align: center; /* center text if you want symmetry */
+  border: 1px solid #c8d8e4;
+}
+
+/* Zebra striping */
+.custom-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 /* Hover effect */
 .custom-table tbody tr:hover {
   background-color: #c8d8e4; /* soft light blue hover */
-  cursor: pointer;
+}
+
+.custom-table .empty-row td {
+  text-align: center;       /* horizontal */
+  vertical-align: middle;   /* vertical */
+  height: 3rem;             /* match other rows if needed */
+  font-style: italic;       /* optional: make it visually distinct */
+  color: #888888;           /* optional: gray text */
 }
 
 /* Responsive adjustments */
@@ -147,5 +180,45 @@
     float: left;
     font-weight: 600;
     color: #2b6777;
+  }
+}
+
+.page-split {
+  display: grid;
+  grid-template-columns: 40% 60%; /* left = 40%, right = 60% */
+  gap: 2rem;                      /* space between form and table */
+  margin-top: 70px;               /* space for fixed navbar */
+  padding: 2rem;
+}
+
+/* Left panel (form) */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;   /* let children fill the width */
+}
+
+/* Ensure form fills available width */
+.left-panel .form-custom {
+  width: 100%;
+}
+
+/* Right panel (tables) */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* spacing between multiple tables */
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .page-split {
+    grid-template-columns: 1fr; /* stack vertically */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .left-panel, .right-panel {
+    width: 100%;
   }
 }

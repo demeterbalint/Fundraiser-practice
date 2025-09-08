@@ -1,0 +1,52 @@
+<h1>My transfers</h1>
+<hr>
+
+<table class="custom-table" id="incoming-table">
+
+  <caption>Incoming transfers:</caption>
+  <thead>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </thead>
+  <tbody id="incoming-body">
+
+    <tr *ngIf="incomingList.length === 0" class="empty-row">
+      <td colspan="4">No transfers found</td>
+    </tr>
+
+    <tr *ngFor="let i of incomingList">
+      <td>{{i.source}}</td>
+      <td>{{i.target}}</td>
+      <td>{{i.amount}}</td>
+      <td>{{i.timeStamp}}</td>
+    </tr>
+  </tbody>
+
+</table>
+
+<table class="custom-table" id="outgoing-table">
+
+  <caption>Outgoing transfers:</caption>
+  <thead>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </thead>
+  <tbody id="outgoing-body">
+
+    <tr *ngIf="outgoingList.length === 0" class="empty-row">
+      <td colspan="4">No transfers found</td>
+    </tr>
+
+    <tr *ngFor="let o of outgoingList">
+      <td>{{o.source}}</td>
+      <td>{{o.target}}</td>
+      <td>{{o.amount}}</td>
+      <td>{{o.timeStamp}}</td>
+    </tr>
+  </tbody>
+
+</table>

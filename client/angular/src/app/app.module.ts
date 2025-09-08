@@ -10,6 +10,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 import { TransferFormComponent } from './components/transfer-form/transfer-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountsComponent } from './components/accounts/accounts.component';
+import { MyTransfersComponent } from './components/my-transfers/my-transfers.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AccountsComponent } from './components/accounts/accounts.component';
     NavbarComponent,
     MyAccountComponent,
     TransferFormComponent,
-    AccountsComponent
+    AccountsComponent,
+    MyTransfersComponent
   ],
   imports: [
     BrowserModule,

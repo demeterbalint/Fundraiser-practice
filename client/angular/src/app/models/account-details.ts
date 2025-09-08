@@ -6,6 +6,6 @@ export interface AccountDetails {
   goal: string;
   balance: number
   funds: number
-  incomingTransferList: TransferListItem[];
-  outgoingTransferList: TransferListItem[];
+  incomingTransfers: TransferListItem[];
+  outgoingTransfers: TransferListItem[];
 }
