@@ -4,9 +4,7 @@
 <form class="form-custom" [formGroup]="transferForm" (ngSubmit)="initiateTransfer()">
   <div class="form-field">
     <label for="source-input">From:</label>
-    <input type="text" id="source-input" [value]="myAccount.username" [disabled]="true">
-    <!-- Hidden: this is what the form submits -->
-    <input type="hidden" formControlName="source">
+    <input type="text" id="source-input" [value]="myTransfer.sourceAccountName" [disabled]="true">
   </div>
 
   <div class="form-field">
@@ -14,7 +12,7 @@
     <select id="target-option" formControlName="target">
       <option value="" disabled selected hidden>-- Select an account --</option>
 
-      <option *ngFor="let target of targetList" type="text" [value]="target.goal">{{target.goal}}</option>
+      <option *ngFor="let target of myTransfer.targetAccountOptions" type="text" [value]="target.goal">{{target.goal}}</option>
     </select>
     <div class="error">
       <small *ngIf="transferForm.get('target')?.invalid">Target is required</small>
@@ -34,7 +32,7 @@
 
   <div class="form-field">
     <label for="balance-input">My balance:</label>
-    <input type="text" id="balance-input" [value]="myAccount.balance" [disabled]="true">
+    <input type="text" id="balance-input" [value]="myTransfer.balance" [disabled]="true">
   </div>
 
   <button type="submit" [disabled]="transferForm.invalid">Transfer</button>

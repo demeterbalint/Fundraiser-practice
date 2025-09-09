@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TransferCreationCommand {
 
-    private Long id;
     private String target;
     @Min(value = 50, message = "Amount too low")
     @Max(value = 1000, message = "Amount too high")

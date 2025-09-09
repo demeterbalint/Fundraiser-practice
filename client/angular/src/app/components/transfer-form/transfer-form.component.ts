@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {AccountService} from '../../services/account.service';
-import {AccountDetails} from '../../models/account-details';
 import {TransferService} from '../../services/transfer.service';
 import {Router} from '@angular/router';
+import {TransferInitData} from '../../models/transfer-init-data';
 
 @Component({
   selector: 'app-transfer-form',
@@ -14,13 +13,12 @@ import {Router} from '@angular/router';
 export class TransferFormComponent implements OnInit {
 
   transferForm: FormGroup;
-  targetList: AccountDetails[] = [];
-  myAccount!: AccountDetails;
+  myTransfer!: TransferInitData;
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private transferService: TransferService, private router: Router) {
+  constructor(private fb: FormBuilder, private transferService: TransferService, private router: Router) {
     this.transferForm = fb.group({
       source: [''],
-      target: ['', Validators.required],
+      target: [''],
       amount: [''],
     })
   }
@@ -30,29 +28,18 @@ export class TransferFormComponent implements OnInit {
   }
 
   private loadTransferForm() {
-    this.accountService.getAccountDetails().subscribe(
-      (data: AccountDetails) => {
-        this.myAccount = data;
 
-        this.transferForm.patchValue({
-          source: this.myAccount.id
-        })
+    this.transferService.transferBase().subscribe(
+      (data: TransferInitData) => {
+        this.myTransfer = data
 
-        this.accountService.getAllAccounts().subscribe(
-          (data: AccountDetails[])=> {
-            this.targetList = data.filter(ac => ac.id !== this.myAccount.id);
-
-            this.transferForm.get('amount')?.setValidators([
-              Validators.required,
-              Validators.min(50),
-              this.maxValueValidator(1000, this.myAccount.balance)
-            ])
-            this.transferForm.get('amount')?.updateValueAndValidity();
-          },
-          error => {}
-        )
-      },
-      error => {}
+        this.transferForm.get('amount')?.setValidators([
+          Validators.required,
+          Validators.min(50),
+          this.maxValueValidator(1000, this.myTransfer.balance)
+        ])
+        this.transferForm.get('amount')?.updateValueAndValidity();
+      }
     )
   }
 
@@ -63,10 +50,10 @@ export class TransferFormComponent implements OnInit {
         return null;
       }
       if (value > balanceMax) {
-        return { goneOverBalance: {balanceMax} };
+        return {goneOverBalance: {balanceMax}};
       }
       if (value > max) {
-        return { goneOverMax: {max} };
+        return {goneOverMax: {max}};
       }
       return null;
     };

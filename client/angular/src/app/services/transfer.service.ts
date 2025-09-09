@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AccountDetails} from '../models/account-details';
 import {TransferListItem} from '../models/transfer-list-item';
 import {TransferCreationCommand} from '../models/transfer-creation-command';
+import {TransferInitData} from '../models/transfer-init-data';
 
 const BASE_URL = 'http://localhost:8080/api';
 
@@ -25,4 +26,9 @@ export class TransferService {
   createTransfer(data: TransferCreationCommand): Observable<any> {
     return this.http.post(`${BASE_URL}/transfers`, data);
   }
+
+  transferBase(): Observable<TransferInitData> {
+    return this.http.get<TransferInitData>(`${BASE_URL}/transfers`);
+  }
+
 }
