@@ -263,3 +263,10 @@ h1 {
     width: 100%;
   }
 }
+
+.error small {
+  display: block; /* ensures it’s below input */
+  margin-top: 0.15rem; /* small gap from input */
+  color: #ff4d4d; /* red text */
+  font-size: 0.85rem;
+}
