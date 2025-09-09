@@ -55,13 +55,21 @@ h1 {
   border-radius: 0.375rem;
   cursor: pointer;
   transition: background-color 0.2s;
-
   display: block;      /* make sure it behaves like a block element */
   margin: 1rem auto 0;
 }
 
 .form-custom button:hover {
   background-color: #2b6777; /* dark teal on hover */
+}
+
+.form-custom button:disabled {
+  color: #c8d8e4;
+  cursor: not-allowed;
+}
+
+.form-custom button:disabled:hover {
+  background-color: #52ab98;
 }
 
 .form-custom .form-field {
