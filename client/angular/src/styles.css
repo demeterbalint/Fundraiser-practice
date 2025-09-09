@@ -191,23 +191,20 @@ h1 {
   padding: 2rem;
 }
 
-/* Left panel (form) */
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;   /* let children fill the width */
-}
-
-/* Ensure form fills available width */
-.left-panel .form-custom {
-  width: 100%;
-}
-
-/* Right panel (tables) */
+/* Panels (can hold forms, tables, or both) */
+.left-panel,
 .right-panel {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* spacing between multiple tables */
+  gap: 1.5rem; /* spacing between children */
+}
+
+/* Make forms and tables take full width of their parent */
+.left-panel .form-custom,
+.left-panel .custom-table,
+.right-panel .form-custom,
+.right-panel .custom-table {
+  width: 100%;
 }
 
 /* Responsive for smaller screens */
