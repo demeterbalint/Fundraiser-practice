@@ -187,7 +187,7 @@ h1 {
   display: grid;
   grid-template-columns: 40% 60%; /* left = 40%, right = 60% */
   gap: 2rem;                      /* space between form and table */
-  margin-top: 70px;               /* space for fixed navbar */
+  margin-top: 30px;               /* space for fixed navbar */
   padding: 2rem;
 }
 

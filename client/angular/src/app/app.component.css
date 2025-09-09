@@ -1,12 +1,13 @@
-/* Make main content appear below fixed navbar */
 .main-content {
-  margin-top: 70px; /* height of navbar, adjust if needed */
+
+  margin-top: 30px; /* height of navbar, adjust if needed */
+  min-height: calc(100vh - 30px); /* full screen minus navbar */
   padding: 2rem;
-  min-height: calc(100vh - 70px); /* full screen minus navbar */
   background-color: #f2f2f2; /* light gray background for contrast */
   color: #2b6777; /* main text color */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/* Make main content appear below fixed navbar */
 
 /* Optional: wrap router content in a card */
 .main-content > * {
