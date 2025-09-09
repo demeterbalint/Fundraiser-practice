@@ -1,1 +1,37 @@
-<p>transfer-form works!</p>
+<h1>Transfer Funds</h1>
+<hr>
+
+<form class="form-custom" [formGroup]="transferForm">
+  <div class="form-field">
+    <label for="source-input">From:</label>
+    <input type="text" id="source-input" formControlName="source">
+  </div>
+
+  <div class="form-field">
+    <label for="target-option">To:</label>
+    <select id="target-option" formControlName="target">
+      <option value="" disabled selected hidden>-- Select an account --</option>
+
+      <option *ngFor="let target of targetList" type="text" [value]="target.id">{{ target.goal }}</option>
+    </select>
+    <div class="error">
+      <small *ngIf="transferForm.get('target')?.invalid">Target is required</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="amount-input">Amount:</label>
+    <input type="text" id="amount-input" formControlName="amount">
+    <div class="error">
+      <small *ngIf="transferForm.get('amount')?.errors?.['required']">Amount is required</small>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="balance-input">My balance:</label>
+    <input type="text" id="balance-input" formControlName="myBalance">
+  </div>
+
+  <button type="submit" [disabled]="transferForm.invalid">Transfer</button>
+
+</form>
