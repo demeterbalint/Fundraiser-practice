@@ -1,1 +1,62 @@
-<p>accounts works!</p>
+<div class="page-split">
+
+  <div class="left-panel">
+
+    <h1>Accounts</h1>
+    <hr>
+
+    <table class="custom-table">
+
+      <thead>
+        <th>Goal</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Funds raised</th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let ac of allAccounts">
+          <td>{{ac.goal}}</td>
+          <td>{{ac.username}}</td>
+          <td>{{ac.balance}}</td>
+          <td>{{ac.funds}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="right-panel">
+
+    <h1>All transfers</h1>
+    <hr>
+
+    <table class="custom-table">
+
+      <thead>
+      <th>From</th>
+      <th>To</th>
+      <th>Amount</th>
+      <th>Date</th>
+      </thead>
+
+      <tbody>
+      <tr *ngIf="allTransfers.length === 0" class="empty-row">
+        <td colspan="4">No transfers found!</td>
+      </tr>
+      <tr *ngFor="let tr of allTransfers">
+        <td>{{tr.source}}</td>
+        <td>{{tr.target}}</td>
+        <td>{{tr.amount}}</td>
+        <td>{{tr.timeStamp}}</td>
+      </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+</div>

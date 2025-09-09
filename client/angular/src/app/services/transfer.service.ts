@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AccountDetails} from '../models/account-details';
+import {TransferListItem} from '../models/transfer-list-item';
 
 const BASE_URL = 'http://localhost:8080/api';
 
@@ -14,5 +15,9 @@ export class TransferService {
 
   fetchTransferLists(): Observable<AccountDetails> {
     return this.http.get<AccountDetails>(`${BASE_URL}/accounts/myAccountDetails`);
+  }
+
+  getAllTransfers() {
+    return this.http.get<TransferListItem[]>(`${BASE_URL}/transfers/allTransfers`);
   }
 }

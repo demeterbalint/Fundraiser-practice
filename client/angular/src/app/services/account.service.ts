@@ -19,4 +19,8 @@ export class AccountService {
   getAccountDetails(): Observable<AccountDetails> {
     return this.http.get<AccountDetails>(`${BASE_URL}/myAccountDetails`);
   }
+
+  getAllAccounts() {
+    return this.http.get<AccountDetails[]>(`${BASE_URL}/allAccounts`);
+  }
 }
