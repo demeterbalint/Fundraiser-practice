@@ -14,5 +14,4 @@ public class TransferCreationCommand {
     @Min(value = 50, message = "Amount too low")
     @Max(value = 1000, message = "Amount too high")
     private Integer amount;
-    private String timeStamp;
 }
