@@ -24,6 +24,9 @@
     <input type="text" id="amount-input" formControlName="amount">
     <div class="error">
       <small *ngIf="transferForm.get('amount')?.errors?.['required']">Amount is required</small>
+      <small *ngIf="transferForm.get('amount')?.errors?.['min']">Amount too low</small>
+      <small *ngIf="transferForm.get('amount')?.errors?.['goneOverMax']">Amount to high</small>
+      <small *ngIf="transferForm.get('amount')?.errors?.['goneOverBalance']">Amount exceeds balance</small>
     </div>
   </div>
 

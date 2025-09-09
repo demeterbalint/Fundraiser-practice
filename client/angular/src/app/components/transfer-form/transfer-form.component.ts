@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {AccountService} from '../../services/account.service';
 import {AccountDetails} from '../../models/account-details';
 
@@ -19,7 +19,7 @@ export class TransferFormComponent implements OnInit {
     this.transferForm = fb.group({
       source: [''],
       target: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: [''],
       myBalance: ['']
     })
   }
@@ -44,6 +44,13 @@ export class TransferFormComponent implements OnInit {
               source: this.myAccount.username,
               myBalance: this.myAccount.balance
             })
+
+            this.transferForm.get('amount')?.setValidators([
+              Validators.required,
+              Validators.min(50),
+              this.maxValueValidator(1000, this.myAccount.balance)
+            ])
+            this.transferForm.get('amount')?.updateValueAndValidity();
           },
           error => {}
         )
@@ -52,5 +59,19 @@ export class TransferFormComponent implements OnInit {
     )
   }
 
-  protected readonly require = require;
+  maxValueValidator(max: number, balanceMax: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (value == null && value === '') {
+        return null;
+      }
+      if (value > balanceMax) {
+        return { goneOverBalance: {balanceMax} };
+      }
+      if (value > max) {
+        return { goneOverMax: {max} };
+      }
+      return null;
+    };
+  }
 }
